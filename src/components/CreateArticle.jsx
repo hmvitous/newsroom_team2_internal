@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { TextArea, TextInput, Button, Form, Box, CheckBox } from "grommet";
-import { Attachment, Trash } from "grommet-icons";
 import axios from "axios";
-import ImageUploading from "react-images-uploading"
 
 class CreateArticle extends Component {
-  state = {
-    image: []
-  }
-
   articleCreation = async event => {
-    event.preventDefault()
     let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'));
     let articleClass;
     if (event.target.premium.checked === true) {
@@ -26,30 +19,20 @@ class CreateArticle extends Component {
           title: event.target.title.value,
           teaser: event.target.teaser.value,
           content: event.target.content.value,
-          image: this.state.image,
           article_class: articleClass
         },
       },
-        { headers: headers }
+      {headers: headers}
       );
 
       this.props.dispatch({
         type: "ARTICLE_SUBMITTED",
         payload: { message: response.data.message }
       });
-
     } catch (error) {
       this.props.dispatch({
         type: "ARTICLE_SUBMITTED",
         payload: { message: error.message }
-      });
-    }
-  };
-
-  onImageDropHandler = imageList => {
-    if (imageList.length > 0) {
-      this.setState({
-        image: imageList[0].dataURL
       });
     }
   };
@@ -91,7 +74,6 @@ class CreateArticle extends Component {
             required={true}
             margin="small"
           />
-
           <ImageUploading onChange={this.onImageDropHandler}>
             {({ imageList, onImageUpload }) => (
               <div className="upload__image-wrapper">
@@ -129,9 +111,6 @@ class CreateArticle extends Component {
           </ImageUploading>
           <Button label="Submit Article" type="submit" margin="small" color="#544C2F" />
           <Button
-            color="#544C2F"
-            label="Go Back"
-            onClick={() => this.props.dispatch({ type: "HIDE_CREATE" })}
           />
         </Form>
         <Box className="message">{this.props.message}</Box>
