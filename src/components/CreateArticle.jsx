@@ -58,12 +58,13 @@ class CreateArticle extends Component {
     return (
       <>
         <h1>Let's create some magic...</h1>
-        <Form className="create-article" onSubmit={this.articleCreation}>
+        <Form margin="small" className="create-article" onSubmit={this.articleCreation}>
           <CheckBox
             name="premium"
             className="premium"
             id="premium"
             label="Premium"
+            margin="small"
           />
 
           <TextInput
@@ -72,6 +73,7 @@ class CreateArticle extends Component {
             key="title"
             id="title"
             required={true}
+            margin="medium"
           />
           <TextArea
             className="teaser"
@@ -79,6 +81,7 @@ class CreateArticle extends Component {
             key="teaser"
             id="teaser"
             required={true}
+            margin="small"
           />
           <TextArea
             className="content"
@@ -86,6 +89,7 @@ class CreateArticle extends Component {
             key="content"
             id="content"
             required={true}
+            margin="small"
           />
 
           <ImageUploading onChange={this.onImageDropHandler}>
@@ -123,8 +127,9 @@ class CreateArticle extends Component {
               </div>
             )}
           </ImageUploading>
-          <Button label="Submit Article" type="submit" />
+          <Button label="Submit Article" type="submit" margin="small" color="#544C2F" />
           <Button
+            color="#544C2F"
             label="Go Back"
             onClick={() => this.props.dispatch({ type: "HIDE_CREATE" })}
           />

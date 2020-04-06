@@ -18,7 +18,7 @@ class LogoutButton extends Component {
   };
 
   render() {
-    return <Button onClick={this.onLogout} label="Logout" />;
+    return <Button onClick={this.onLogout} margin="small" color="#7C8EA6" label="Logout" />;
   }
 }
 
